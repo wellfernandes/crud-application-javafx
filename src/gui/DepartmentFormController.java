@@ -64,7 +64,6 @@ public class DepartmentFormController implements Initializable {
 			throw new IllegalStateException("service was null!");
 		} else {
 			try {
-				System.out.println("save department");
 				entity = getFormeData();
 				service.saveOrUpdate(entity);
 				notifyDataChangeListeners();
@@ -103,7 +102,6 @@ public class DepartmentFormController implements Initializable {
 
 	@FXML
 	void onBtnCancelAction(ActionEvent event) {
-		System.out.println("cancel add department");
 		Utils.currentStage(event).close();
 	}
 
