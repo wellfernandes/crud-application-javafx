@@ -59,7 +59,10 @@ public class DepartmentListController implements Initializable, DataChangeListen
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		initializeNodes();
+	}
 
+	public void initializeNodes() {
 		// correctly initializes columns
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -67,7 +70,6 @@ public class DepartmentListController implements Initializable, DataChangeListen
 		// tableView fill the entire screen
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewDepartment.prefHeightProperty().bind(stage.heightProperty());
-
 	}
 
 	public void setDepartmentService(DepartmentService service) {

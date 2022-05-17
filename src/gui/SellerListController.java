@@ -36,7 +36,7 @@ import model.services.SellerService;
 
 public class SellerListController implements Initializable, DataChangeListener {
 
-	private SellerService departmentService;
+	private SellerService service;
 
 	@FXML
 	private TableView<Seller> tableViewSeller;
@@ -67,7 +67,10 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		initialzeNodes();
+	}
 
+	public void initialzeNodes() {
 		// correctly initializes columns
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -80,22 +83,19 @@ public class SellerListController implements Initializable, DataChangeListener {
 		// tableView fill the entire screen
 		Stage stage = (Stage) Main.getMainScene().getWindow();
 		tableViewSeller.prefHeightProperty().bind(stage.heightProperty());
-
 	}
 
 	public void setSellerService(SellerService service) {
-		this.departmentService = service;
+		this.service = service;
 	}
 
 	public void updateTableView() {
-		if (departmentService == null) {
+		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-
-		List<Seller> list = departmentService.findAll();
+		List<Seller> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewSeller.setItems(obsList);
-
 		// add button on each table list
 		initEditButtons();
 		initRemoveButtons();
@@ -175,11 +175,11 @@ public class SellerListController implements Initializable, DataChangeListener {
 	private void removeEntity(Seller obj) {
 		Optional<ButtonType> result = Alerts.showConfirmation("Confirmation", "Are you sure to delete?");
 		if (result.get() == ButtonType.OK) {
-			if (departmentService == null) {
+			if (service == null) {
 				throw new IllegalStateException("service was null!");
 			}
 			try {
-				departmentService.remove(obj);
+				service.remove(obj);
 				updateTableView();
 			} catch (DbIntegrityException e) {
 				Alerts.showAlert("Error removing object", null, e.getMessage(), AlertType.ERROR);
