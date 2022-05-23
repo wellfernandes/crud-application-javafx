@@ -12,12 +12,12 @@ public class Seller implements Serializable {
 	private String email;
 	private Date birthDate;
 	private Double baseSalary;
-	
+
 	private Department department;
-	
-	//constructors
+
+	// constructors
 	public Seller() {
-		
+
 	}
 
 	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
@@ -28,8 +28,8 @@ public class Seller implements Serializable {
 		this.baseSalary = baseSalary;
 		this.department = department;
 	}
-	
-	//getters and setters
+
+	// getters and setters
 	public Integer getId() {
 		return id;
 	}
@@ -82,8 +82,8 @@ public class Seller implements Serializable {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	//toString
+
+	// toString
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
