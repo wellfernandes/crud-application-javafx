@@ -1,2 +1,4 @@
 # crud-application-javafx
-java application with crud using mysql database and screens in javaFX
+
+Aplicação java desktop de crud simples, utilizando banco de dados mysql e telas em javafx.
+
